@@ -290,11 +290,11 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
         <p>
             Pluginet tager imod en adressetekst og returnerer dén adresse, som bedst matcher. Hvis adresseteksten, som skal geokodes, 
             findes i flere felter i attributtabellen (fx vejnavn i et felt, husnummer i et andet felt og postnummer i et tredje felt), 
-            så skal disse sættes samme til et samlet adresseudtryk vha. udtryksbyggeren (klik på epsilon-ikonet). 
+            så skal disse sættes sammen til et samlet adresseudtryk vha. udtryksbyggeren (klik på epsilon-ikonet). 
         </p>
         <p>
             En gyldig adresse kan skrives på forskellige måder (varianter). Man kan fx vælge at udelade det supplerende bynavn, 
-            eller at bruge det forkorterede "adresseringsvejnavn" i stedet for det fulde vejnavn. 
+            eller at bruge det forkortede "adresseringsvejnavn" i stedet for det fulde vejnavn. 
         </p>
         <p>
             Bemærk at man skal vælge mellem vask af adresser eller adgangsadresser. Forskellen er at ’adresser’ kan indeholde en etage- og dørbetegnelse, dvs. de går helt til entrédøren. 
