@@ -279,24 +279,38 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
         return self.helpString()
 
     def helpString(self):
-        return self.tr("""<p>Denne algoritme er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.</p><p>
-
-        Datavask-API'et gør det muligt at oversætte en ustruktureret adressetekst til en officiel, struktureret adresse med ID, også selvom adressen evt. indeholder en stavefejl eller den officielle adressebetegnelse er ændret.
-</p>
-<p>
-Datavask-API'et tager imod en adressetekst og returnerer den adresse, som bedst matcher adressen. Har anvenderen en struktueret adresse i forvejen skal anvenderen selv sammensætte adresseteksten evt. ved brug af et udtryk.
-</p>
-<p>
-Bemærk, at der er separate API'er til vask af <b>adresser</b> og <b>adgangsadresser</b>. Forskellen på en adresse og en adgangsadresse er at adressen rummer eventuel etage- og/eller dørbetegnelse. Det gør adgangsadressen ikke.
-<p><p>
-Datavask svar indeholder en angivelse af hvor sikkert svaret er, anført som en <b>kategori</b> A, B eller C. Kategori A indikerer, at der er tale om et eksakt match. Kategori B indikerer, at der ikke er tale om et helt eksakt match, men at resultatet stadig er sikkert. Kategori C angiver, at resultatet usikkert.
-</p>
-<p>
-En gyldig adresse kan skrives på flere forskellige måder (varianter). Man kan vælge at udelade det supplerende bynavn, man kan benytte det forkorterede "adresseringsvejnavn" i stedet for det fulde vejnavn, og man kan anvende såkaldte "stormodtagerpostnumre".
-</p>
-<p>
-Datavask anvender også historiske adresser som datagrundlag, således at adresser som er ændret også kan vaskes. Endvidere håndterer datavasken også adresser hvor der er anvendt stormodtagerpostnumre.
-</p>
+        return self.tr("""
+        <p>
+            Denne algoritme er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.
+        </p>
+        <p>
+            Med pluginet kan man oversætte en ustruktureret adressetekst til en officiel adresse fra Danmarks Adresseregister (DAR). 
+            Det håndterer stavefejl og situationer, hvor den officielle adressebetegnelse er ændret.
+        </p>
+        <p>
+            Pluginet tager imod en adressetekst og returnerer dén adresse, som bedst matcher. Hvis adresseteksten, som skal geokodes, 
+            findes i flere felter i attributtabellen (fx vejnavn i et felt, husnummer i et andet felt og postnummer i et tredje felt), 
+            så skal disse sættes samme til et samlet adresseudtryk vha. udtryksbyggeren (klik på epsilon-ikonet). 
+        </p>
+        <p>
+            En gyldig adresse kan skrives på forskellige måder (varianter). Man kan fx vælge at udelade det supplerende bynavn, 
+            eller at bruge det forkorterede "adresseringsvejnavn" i stedet for det fulde vejnavn. 
+        </p>
+        <p>
+            Bemærk at man skal vælge mellem vask af adresser eller adgangsadresser. Forskellen er at ’adresser’ kan indeholde en etage- og dørbetegnelse, dvs. de går helt til entrédøren. 
+            Det gør ’adgangsadresser’ (som i dag hedder ’husnumre’) ikke, de slutter altid ved gade- eller opgangsdøren.
+        </p>
+        <p>
+            Datavask svar angiver hvor sikkert svaret er, i form af en kategori A, B eller C. A indikerer eksakt match. 
+            B indikerer et ikke helt eksakt match, men at resultatet stadig er sikkert. C betyder, at resultatet usikkert.
+        </p>
+        <p>
+            Datavask anvender også DAR’s historiske adresser som datagrundlag, således at adresser som er ændret også kan vaskes. 
+            Endvidere håndterer datavasken også adresser hvor der er anvendt såkaldte ’stormodtagerpostnumre’ fra PostNord.
+        </p>
+        <p>
+            Læs mere på <a href="https://github.com/Septima/qgis-addresstoolsdk">pluginets GitHub-side</a>, hvor du også kan se et eksempel på anvendelse.
+        </p>
         """)
 
     def tr(self, string):
