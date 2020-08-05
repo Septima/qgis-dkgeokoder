@@ -1,0 +1,21 @@
+Bibliotek	Vejnavn og vejnr	Postnummer
+Hovedbiblioteket, Krystalgade	Krystalgade 15	1172 København K
+Blågårdens Bibliotek	Blågårds Plads 5	2200 København N
+Brønshøj Bibliotek	Krabbesholmvej 3	2700 Brønshøj
+Christianshavns Bibliotek	Dronningensgade 53	1420 København K
+Husum Bibliotek	Frederikssundsvej 290	2700 Brønshøj
+Islands Brygge Bibliotek	Njalsgade 15	2300 København S
+Øbro Jagtvej Bibliotek	Jagtvej 227	2100 København Ø
+Biblioteket Rentemestervej	Rentemestervej 76	2400 København NV
+Nørrebro Bibliotek	Nørrebrohallen Nørrebrogade 208	2200 København N
+Solvang Bibliotek	Remisevej 14	2300 København S
+Sundby Bibliotek	Kvarterhuset Jemtelandsgade 3	2300 København S
+Bibliotekshuset	Rodosvej 4	2300 København S
+Sydhavnens Bibliotek	Wagnersvej 19	2450 København SV
+Tingbjerg Bibliotek	Skolesiden 4	2700 Brønshøj
+Valby Bibliotek	Annexstræde 2	2500 Valby
+Kulturstationen Vanløse. Biblioteket	Jernbane Alle 38	2720 Vanløse
+Vesterbro Bibliotek	Lyrskovgade 4	1758 København V
+Vigerslev Bibliotek	Kirsebærhaven 23	2500 Valby
+Østerbro Bibliotek	Dag Hammarskjölds Alle 19	2100 København Ø
+Ørestad Bibliotek	Arne Jacobsens Allé 19	2300 København S
