@@ -301,7 +301,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
             Det gør ’adgangsadresser’ (som i dag hedder ’husnumre’) ikke, de slutter altid ved gade- eller opgangsdøren.
         </p>
         <p>
-            Datavask svar angiver hvor sikkert svaret er, i form af en kategori A, B eller C. A indikerer eksakt match. 
+            Datavask svar angiver hvor sikkert svaret er, i form af en <b>kategori</b> A, B eller C. A indikerer eksakt match. 
             B indikerer et ikke helt eksakt match, men at resultatet stadig er sikkert. C betyder, at resultatet usikkert.
         </p>
         <p>
