@@ -297,7 +297,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
             eller at bruge det forkortede "adresseringsvejnavn" i stedet for det fulde vejnavn. 
         </p>
         <p>
-            Bemærk at man skal vælge mellem vask af adresser eller adgangsadresser. Forskellen er at ’adresser’ kan indeholde en etage- og dørbetegnelse, dvs. de går helt til entrédøren. 
+            Bemærk at man skal vælge mellem vask af <b>adresser</b> eller <b>adgangsadresser</b>. Forskellen er at ’adresser’ kan indeholde en etage- og dørbetegnelse, dvs. de går helt til entrédøren. 
             Det gør ’adgangsadresser’ (som i dag hedder ’husnumre’) ikke, de slutter altid ved gade- eller opgangsdøren.
         </p>
         <p>
