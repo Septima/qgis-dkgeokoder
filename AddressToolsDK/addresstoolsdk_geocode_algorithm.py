@@ -125,7 +125,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
 
     OUTPUT = 'OUTPUT'
     INPUT = 'INPUT'
-    ADDRESS_TYPE = 'ADDRESS_TYPE'
+    ADDRESSTYPE = 'ADDRESSTYPE'
     EXPRESSION = 'EXPRESSION'
 
     def initAlgorithm(self, config):
@@ -145,7 +145,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
 
         self.addParameter(
             QgsProcessingParameterEnum(
-                self.ADDRESS_TYPE,
+                self.ADDRESSTYPE,
                 self.tr('Input adressetype'),
                 options=[x[1] for x in self.DAWA_ADDRESS_TYPES], 
                 defaultValue=0
