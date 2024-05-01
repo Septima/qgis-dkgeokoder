@@ -8,7 +8,7 @@ name=Danish Address Tools
 qgisMinimumVersion=3.6 
 description=This plugin provides tools to work with Danish addresses within the QGIS processing framework.
 description[da]=Dette plugin tilbyder værktøjer til at arbejde med danske adresser i QGIS processing.
-version=0.1
+version=0.2 beta 1
 author=Septima
 email=asger@septima.dk
 

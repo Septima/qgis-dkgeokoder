@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 
 """
@@ -51,6 +52,9 @@ from qgis.core import (Qgis,
                        QgsProcessingParameterExpression,
                        QgsProcessingParameterFeatureSink,
                        QgsWkbTypes)
+
+
+#from processing.core.ProcessingLog import ProcessingLog
 
 class DawaGeocoder():
     DAWA_ENDPOINT = "https://dawa.aws.dk"
@@ -127,6 +131,9 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
     INPUT = 'INPUT'
     ADDRESSTYPE = 'ADDRESSTYPE'
     EXPRESSION = 'EXPRESSION'
+
+    def flags(self):
+        return QgsProcessingAlgorithm.FlagNoThreading
 
     def initAlgorithm(self, config):
         """
@@ -218,15 +225,22 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
             # Get address string    
             exp_context.setFeature(feature)
             address = expression.evaluate(exp_context)
-
+            
+            try:
             # Geocode it
-            geocoded = geocoder.geocode(address)
-            if geocoded:
-                out_feature.setGeometry(QgsGeometry(geocoded["accesspoint"]))
-                out_feature[id_field_name] = geocoded["id"]
-                out_feature[cat_field_name] = geocoded["category"]
-                out_feature[denote_field_name] = geocoded["denotation"]
-
+                geocoded = geocoder.geocode(address)
+                if geocoded:
+                    out_feature.setGeometry(QgsGeometry(geocoded["accesspoint"]))
+                    out_feature[id_field_name] = geocoded["id"]
+                    out_feature[cat_field_name] = geocoded["category"]
+                    out_feature[denote_field_name] = geocoded["denotation"]
+            except:
+                #out_feature.setGeometry(QgsGeometry(geocoded["accesspoint"]))
+                out_feature[id_field_name] = " "
+                out_feature[cat_field_name] = " "
+                out_feature[denote_field_name] = " "
+                message = "Fejl i en adresse"
+                #iface.messageBar().pushMessage(message, level=Qgis.Warning, duration=10)
             # Add a feature in the sink
             sink.addFeature(out_feature, QgsFeatureSink.FastInsert)
 
