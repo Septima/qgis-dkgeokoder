@@ -51,10 +51,13 @@ from qgis.core import (Qgis,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterExpression,
                        QgsProcessingParameterFeatureSink,
-                       QgsWkbTypes)
-
+                       QgsWkbTypes,
+                       QgsProcessingFeedback)
 
 #from processing.core.ProcessingLog import ProcessingLog
+
+
+
 
 class DawaGeocoder():
     DAWA_ENDPOINT = "https://dawa.aws.dk"
@@ -239,8 +242,9 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
                 out_feature[id_field_name] = " "
                 out_feature[cat_field_name] = " "
                 out_feature[denote_field_name] = " "
-                message = "Fejl i en adresse"
+                message = "Fejl i en adresse "+ address +"\n"
                 #iface.messageBar().pushMessage(message, level=Qgis.Warning, duration=10)
+                feedback.pushInfo(message)
             # Add a feature in the sink
             sink.addFeature(out_feature, QgsFeatureSink.FastInsert)
 
