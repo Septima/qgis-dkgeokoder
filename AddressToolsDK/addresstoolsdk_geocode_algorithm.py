@@ -299,7 +299,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
     def helpString(self):
         return self.tr("""
         <p>
-            Denne algoritme er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.
+            Dette plugin er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.
         </p>
         <p>
             Med pluginet kan man oversætte en ustruktureret adressetekst til en officiel adresse fra Danmarks Adresseregister (DAR). 
@@ -320,14 +320,14 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
         </p>
         <p>
             Datavask svar angiver hvor sikkert svaret er, i form af en <b>kategori</b> A, B eller C. A indikerer eksakt match. 
-            B indikerer et ikke helt eksakt match, men at resultatet stadig er sikkert. C betyder, at resultatet usikkert.
+            B indikerer et ikke helt eksakt match, men at resultatet stadig er sikkert. C betyder, at resultatet usikkert. Det er vigtigt at gennemgå adresserne, der har fået et 'C', da mange af dem vil være forkerte!
         </p>
         <p>
             Datavask anvender også DAR’s historiske adresser som datagrundlag, således at adresser som er ændret også kan vaskes. 
             Endvidere håndterer datavasken også adresser hvor der er anvendt såkaldte ’stormodtagerpostnumre’ fra PostNord.
         </p>
         <p>
-            Læs mere på <a href="https://github.com/Septima/qgis-addresstoolsdk">pluginets GitHub-side</a>, hvor du også kan se et eksempel på anvendelse.
+            Læs mere på <a href="https://github.com/Septima/qgis-addresstoolsdk">pluginets GitHub-side</a>.
         </p>
         """)
 
