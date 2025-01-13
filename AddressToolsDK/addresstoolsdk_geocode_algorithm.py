@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 """
@@ -51,13 +50,7 @@ from qgis.core import (Qgis,
                        QgsProcessingParameterEnum,
                        QgsProcessingParameterExpression,
                        QgsProcessingParameterFeatureSink,
-                       QgsWkbTypes,
-                       QgsProcessingFeedback)
-
-#from processing.core.ProcessingLog import ProcessingLog
-
-
-
+                       QgsWkbTypes)
 
 class DawaGeocoder():
     DAWA_ENDPOINT = "https://dawa.aws.dk"
@@ -135,8 +128,6 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
     ADDRESSTYPE = 'ADDRESSTYPE'
     EXPRESSION = 'EXPRESSION'
 
-    def flags(self):
-        return QgsProcessingAlgorithm.FlagNoThreading
 
     def initAlgorithm(self, config):
         """
@@ -238,12 +229,10 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
                     out_feature[cat_field_name] = geocoded["category"]
                     out_feature[denote_field_name] = geocoded["denotation"]
             except:
-                #out_feature.setGeometry(QgsGeometry(geocoded["accesspoint"]))
-                out_feature[id_field_name] = " "
+                out_feature[id_field_name] = "null"
                 out_feature[cat_field_name] = " "
-                out_feature[denote_field_name] = " "
+                out_feature[denote_field_name] = "null"
                 message = "Fejl i en adresse "+ address +"\n"
-                #iface.messageBar().pushMessage(message, level=Qgis.Warning, duration=10)
                 feedback.pushInfo(message)
             # Add a feature in the sink
             sink.addFeature(out_feature, QgsFeatureSink.FastInsert)
@@ -300,6 +289,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
         return self.tr("""
         <p>
             Dette plugin er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.
+            Bemærk, https://dawa.aws.dk/">DAWA</a>s Datavask-API ikke længere bliver opdateret.
         </p>
         <p>
             Med pluginet kan man oversætte en ustruktureret adressetekst til en officiel adresse fra Danmarks Adresseregister (DAR). 

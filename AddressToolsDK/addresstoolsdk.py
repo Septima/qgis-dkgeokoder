@@ -74,3 +74,4 @@ class AddressToolsDKPlugin(object):
 
     def unload(self):
         QgsApplication.processingRegistry().removeProvider(self.provider)
+    
