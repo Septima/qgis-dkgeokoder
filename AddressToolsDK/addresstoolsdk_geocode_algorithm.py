@@ -125,8 +125,9 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
 
     OUTPUT = 'OUTPUT'
     INPUT = 'INPUT'
-    ADDRESS_TYPE = 'ADDRESS_TYPE'
+    ADDRESSTYPE = 'ADDRESSTYPE'
     EXPRESSION = 'EXPRESSION'
+
 
     def initAlgorithm(self, config):
         """
@@ -145,7 +146,7 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
 
         self.addParameter(
             QgsProcessingParameterEnum(
-                self.ADDRESS_TYPE,
+                self.ADDRESSTYPE,
                 self.tr('Input adressetype'),
                 options=[x[1] for x in self.DAWA_ADDRESS_TYPES], 
                 defaultValue=0
@@ -218,15 +219,21 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
             # Get address string    
             exp_context.setFeature(feature)
             address = expression.evaluate(exp_context)
-
+            
+            try:
             # Geocode it
-            geocoded = geocoder.geocode(address)
-            if geocoded:
-                out_feature.setGeometry(QgsGeometry(geocoded["accesspoint"]))
-                out_feature[id_field_name] = geocoded["id"]
-                out_feature[cat_field_name] = geocoded["category"]
-                out_feature[denote_field_name] = geocoded["denotation"]
-
+                geocoded = geocoder.geocode(address)
+                if geocoded:
+                    out_feature.setGeometry(QgsGeometry(geocoded["accesspoint"]))
+                    out_feature[id_field_name] = geocoded["id"]
+                    out_feature[cat_field_name] = geocoded["category"]
+                    out_feature[denote_field_name] = geocoded["denotation"]
+            except:
+                out_feature[id_field_name] = "null"
+                out_feature[cat_field_name] = " "
+                out_feature[denote_field_name] = "null"
+                message = "Fejl i en adresse "+ address +"\n"
+                feedback.pushInfo(message)
             # Add a feature in the sink
             sink.addFeature(out_feature, QgsFeatureSink.FastInsert)
 
@@ -281,7 +288,8 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
     def helpString(self):
         return self.tr("""
         <p>
-            Denne algoritme er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.
+            Dette plugin er udviklet af <a href="https://www.septima.dk">Septima</a> og anvender <a href="https://dawa.aws.dk/">DAWA</a>s Datavask-API.
+            Bemærk, https://dawa.aws.dk/">DAWA</a>s Datavask-API ikke længere bliver opdateret.
         </p>
         <p>
             Med pluginet kan man oversætte en ustruktureret adressetekst til en officiel adresse fra Danmarks Adresseregister (DAR). 
@@ -302,14 +310,14 @@ class DkGeokoderAlgorithm(QgsProcessingAlgorithm):
         </p>
         <p>
             Datavask svar angiver hvor sikkert svaret er, i form af en <b>kategori</b> A, B eller C. A indikerer eksakt match. 
-            B indikerer et ikke helt eksakt match, men at resultatet stadig er sikkert. C betyder, at resultatet usikkert.
+            B indikerer et ikke helt eksakt match, men at resultatet stadig er sikkert. C betyder, at resultatet usikkert. Det er vigtigt at gennemgå adresserne, der har fået et 'C', da mange af dem vil være forkerte!
         </p>
         <p>
             Datavask anvender også DAR’s historiske adresser som datagrundlag, således at adresser som er ændret også kan vaskes. 
             Endvidere håndterer datavasken også adresser hvor der er anvendt såkaldte ’stormodtagerpostnumre’ fra PostNord.
         </p>
         <p>
-            Læs mere på <a href="https://github.com/Septima/qgis-addresstoolsdk">pluginets GitHub-side</a>, hvor du også kan se et eksempel på anvendelse.
+            Læs mere på <a href="https://github.com/Septima/qgis-addresstoolsdk">pluginets GitHub-side</a>.
         </p>
         """)
 
